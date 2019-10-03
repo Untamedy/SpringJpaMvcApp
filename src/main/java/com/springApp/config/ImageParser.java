@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.common;
+package com.springApp.config;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;

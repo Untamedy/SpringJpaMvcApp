@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dao;
+package com.springApp.service;
 
-import com.entities.Photo;
+import com.springApp.entities.Photo;
 import java.util.List;
 
 /**
  *
  * @author Lenovo
  */
-public interface PhotoDao {
+public interface PhotoService {
     
     public void add(Photo photo);
     public List<Photo> selectAllFoto();
     public Photo selectById(int id);
-    public void delete(Photo photo);
+    public void delete(int id);
     
     
     

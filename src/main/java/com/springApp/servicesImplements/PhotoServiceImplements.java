@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.services;
+package com.springApp.servicesImplements;
 
-import com.dao.PhotoDao;
-import com.entities.Photo;
-import com.repositories.PhotoRepository;
+import com.springApp.entities.Photo;
+import com.springApp.repositories.PhotoRepository;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.springApp.service.PhotoService;
 
 /**
  *
  * @author Lenovo
  */
 @Service
-public class PhotoService implements PhotoDao{
+public class PhotoServiceImplements implements PhotoService{
 
-    public PhotoService() {
+    public PhotoServiceImplements() {
     }
     
         
@@ -47,10 +47,17 @@ public class PhotoService implements PhotoDao{
     }
         
 
-    @Override
     @Transactional
-    public void delete(Photo photo) {
-        repository.delete(photo);
+    public void delete(int id) {
+        repository.deleteById(id);
     }
+
+    
+    public void deletePhotos(int[] photos) {
+       for(Integer id: photos){
+          repository.deleteById(id);
+       }
+    }
+
     
 }

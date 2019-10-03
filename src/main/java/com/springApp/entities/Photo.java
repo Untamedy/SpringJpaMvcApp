@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.entities;
+package com.springApp.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
