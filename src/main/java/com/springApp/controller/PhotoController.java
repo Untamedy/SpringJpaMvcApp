@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Lenovo
  */
 @Controller
-@RequestMapping("/photo")
+@RequestMapping("/")
 public class PhotoController {
     
     @Autowired
