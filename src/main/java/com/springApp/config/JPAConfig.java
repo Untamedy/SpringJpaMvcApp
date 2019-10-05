@@ -24,7 +24,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableTransactionManagement
 @EnableWebMvc
 @ComponentScan("com.springApp")
-@PropertySource("classpath:app.properties")
+@PropertySource("classpath:mySql.properties")
 @EnableJpaRepositories("com.springApp.repositories")
 public class JPAConfig {
     
