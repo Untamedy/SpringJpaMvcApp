@@ -8,7 +8,7 @@ package com.springApp.servicesImplements;
 import com.springApp.entities.Photo;
 import com.springApp.repositories.PhotoRepository;
 import java.util.List;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.springApp.service.PhotoService;
@@ -48,6 +48,7 @@ public class PhotoServiceImplements implements PhotoService{
         
 
     @Transactional
+    @Override
     public void delete(int id) {
         repository.deleteById(id);
     }

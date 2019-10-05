@@ -44,7 +44,7 @@ public class PhotoController {
     }
     
     
-     @PostMapping( "/delete/this")
+     @PostMapping( "/delete/this{listPhoto}")
     public ResponseEntity<Void> delete(@RequestParam(value = "photos[]", required = false) int[] photos) {
         if (photos != null && photos.length > 0)
             photoService.deletePhotos(photos);

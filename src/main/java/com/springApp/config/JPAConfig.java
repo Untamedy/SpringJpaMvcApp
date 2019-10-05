@@ -1,8 +1,8 @@
 package com.springApp.config;
 
 import java.util.Properties;
-import javax.annotation.Resource;
 import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,31 +14,37 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 /**
  *
  * @author YBolshakova
  */
-
 @Configuration
 @EnableTransactionManagement
+@EnableWebMvc
 @ComponentScan("com.springApp")
 @PropertySource("classpath:app.properties")
 @EnableJpaRepositories("com.springApp.repositories")
-
-
-public class DataConfig {
-private static final String PROP_DATABASE_DRIVER = "db.driver";
+public class JPAConfig {
+    
+    private static final String PROP_DATABASE_DRIVER = "db.driver";
     private static final String PROP_DATABASE_PASSWORD = "db.password";
     private static final String PROP_DATABACE_USERNAME = "db.username";
     private static final String PROP_DATABASE_URL = "db.url";
     private static final String PROP_DATABASE_DIALECT_STRING = "hibernate.dialect";
     private static final String PROP_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
     private static final String PROP_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
-    
-    @Resource
+
+    @Autowired
     private Environment env;
     
-    @Bean
+    
+    public JPAConfig() {
+        super();
+    }
+    
+     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getRequiredProperty(PROP_DATABASE_DRIVER));
@@ -50,31 +56,31 @@ private static final String PROP_DATABASE_DRIVER = "db.driver";
     
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        
+
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setGenerateDdl(true);
-        
+
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-        entityManagerFactoryBean.setPackagesToScan("com.noname.sbs");
+        entityManagerFactoryBean.setPackagesToScan("com.springApp");
         entityManagerFactoryBean.setJpaProperties(getHibernateProperties());
         return entityManagerFactoryBean;
-    }
+        }
+     private Properties getHibernateProperties() {
+        Properties properties = new Properties();
+        properties.put(PROP_DATABASE_DIALECT_STRING, env.getRequiredProperty(PROP_DATABASE_DIALECT_STRING));
+        properties.put(PROP_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
+        properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
 
-    @Bean
+        return properties;
+    }
+     
+     @Bean
     public JpaTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
     
-    private Properties getHibernateProperties() {
-        Properties properties = new Properties();
-        properties.put(PROP_DATABASE_DIALECT_STRING, env.getRequiredProperty(PROP_DATABASE_DIALECT_STRING));
-        properties.put(PROP_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
-        properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
-        
-        return properties;
-    }
 }

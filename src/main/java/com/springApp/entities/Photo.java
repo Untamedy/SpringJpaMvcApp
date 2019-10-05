@@ -23,6 +23,9 @@ public class Photo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
+    @Column
+    private String name;
+    
     @Column(name = "photo")
     private byte [] file;
 
@@ -34,10 +37,18 @@ public class Photo {
     }
        
 
-    public Photo(int id, byte[] file) {
-        this.id = id;
+    public Photo(String name, byte[] file) {
+        this.name = name;
         this.file = file;
     }
+
+    public Photo(int id, String name, byte[] file) {
+        this.id = id;
+        this.name = name;
+        this.file = file;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -53,6 +64,14 @@ public class Photo {
 
     public void setFile(byte[] file) {
         this.file = file;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
     
