@@ -6,7 +6,7 @@
 package com.springApp.controller;
 
 import com.springApp.entities.Photo;
-import com.springApp.servicesImplements.PhotoServiceImplements;
+import com.springApp.service.PhotoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,17 +23,17 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Lenovo
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/photo")
 public class PhotoController {
     
     @Autowired
-    private PhotoServiceImplements photoService;
+    private PhotoService photoService;
     
     @GetMapping("/all")
     public String photos(Model model){
         List<Photo> photos = photoService.selectAllFoto();
         model.addAttribute("photo", photos);        
-        return "list photos";        
+        return "all";        
     }
     
     @PostMapping("/delet{photo_id}")
@@ -44,10 +44,10 @@ public class PhotoController {
     }
     
     
-     @PostMapping( "/delete/this{listPhoto}")
+    @PostMapping( "/delete/this{listPhoto}")
     public ResponseEntity<Void> delete(@RequestParam(value = "photos[]", required = false) int[] photos) {
         if (photos != null && photos.length > 0)
-            photoService.deletePhotos(photos);
+            photoService.deletePhoto(photos);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Hello!</h1>
+        <button onclick="location.href = 'photo/all'">Show all photo</button>
     </body>
 </html>

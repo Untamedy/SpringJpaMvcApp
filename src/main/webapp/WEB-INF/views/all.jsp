@@ -16,20 +16,20 @@
     <body>
         <ul>
             <%
-                List<Photo> allphotos = (List<Photo>) request.getAttribute("list");
+                List<Photo> allphotos = (List<Photo>) request.getAttribute("photo");
                 if (!allphotos.isEmpty()) {
                     for (Photo p : allphotos) {
                         out.println("<br>");
                         String name = "<a href='getPhoto?id=" + p.getId() + "'>" + "Photo " + p.getName() + "</a>";
-                        out.println(" <form action = \"delete\this\" method = \"POST\" target = \"_blank\">");
-                        out.println("<input type = \"checkbox\" name = photoId  checked = \"checked\" /> + name");
-                        out.println("<br>");
-                        out.println("<input type = \"submit\" value = \"Delete Photos\" />");
+                        out.println(" <form action = \"delete\\this\" method = \"POST\" target = \"_blank\">");
+                        out.println("<input type = \"checkbox\" name = photoId />" + name);
+                        out.println("<br>");                       
 
                     }
                 } else {
                     out.println("<h1>" + "Sorry, we don't have any information yet" + "</h1>");
                 }
+                 out.println("<input type = \"submit\" value = \"Delete Photos\" />");
 
             %>
             <br>

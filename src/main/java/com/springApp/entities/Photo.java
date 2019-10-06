@@ -5,6 +5,7 @@
  */
 package com.springApp.entities;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class Photo {
+public class Photo implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,23 +28,19 @@ public class Photo {
     private String name;
     
     @Column(name = "photo")
-    private byte [] file;
+    private String file;
 
     public Photo() {
     }
 
-    public Photo(byte[] file) {
-        this.file = file;
-    }
-       
-
-    public Photo(String name, byte[] file) {
+   
+    public Photo(int id, String name, String file) {
+        this.id = id;
         this.name = name;
         this.file = file;
     }
 
-    public Photo(int id, String name, byte[] file) {
-        this.id = id;
+    public Photo(String name, String file) {
         this.name = name;
         this.file = file;
     }
@@ -58,20 +55,20 @@ public class Photo {
         this.id = id;
     }
 
-    public byte[] getFile() {
-        return file;
-    }
-
-    public void setFile(byte[] file) {
-        this.file = file;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
     
     
