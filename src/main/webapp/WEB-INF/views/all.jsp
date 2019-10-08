@@ -40,7 +40,8 @@
             %>
             <br>
             <br>
-
+            
+            <a href="index.jsp">To start</a>>
 
         </form>
     </body>
