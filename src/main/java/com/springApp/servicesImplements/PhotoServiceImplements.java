@@ -53,6 +53,12 @@ public class PhotoServiceImplements implements PhotoService{
         repository.deleteById(id);
     }
 
+    @Override
+    public int selectMaxId() {
+      return repository.selectMaxId();
+        
+    }
+
     
     
 

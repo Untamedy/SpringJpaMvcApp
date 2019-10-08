@@ -33,8 +33,10 @@ public class Init {
         if (0 != files.length) {
             for (File f : files) {
                 try {
-                    Photo photo = new Photo(f.getName(), f.getCanonicalPath());
+                    if(!repository.exsists(f.getName())){
+                         Photo photo = new Photo(f.getName(), f.getCanonicalPath());
                     repository.save(photo);
+                    }                   
                 } catch (IOException ex) {
                     Logger.getLogger(Init.class.getName()).log(Level.SEVERE, null, ex);
                 }

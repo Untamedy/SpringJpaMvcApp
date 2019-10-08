@@ -18,16 +18,17 @@
             <%
                 out.println("<table  border = \"1\">");
                 out.println("<tr>"
-                        + "<th> Photo </th>"
-                        + "<th>Photo ID</th> "
-                        + "<th> </th> "
+                        + "<th> Name </th>"
+                        + "<th>Photo</th> "
+                        + "<th>Select </th> "
                         + "</tr> ");
                 List<Photo> allphotos = (List<Photo>) request.getAttribute("photos");
                 if (!allphotos.isEmpty()) {
                     for (Photo p : allphotos) {
+                        String name = "<a href='getPhoto?id=" + p.getId() + "'>" + "Photo " + p.getName() + "</a>";
                         out.println("<tr>");
                         out.println("<td>" + p.getName() + "</td>");
-                        out.println("<td>" + p.getId() + "</td>");
+                        out.println("<td>" + name + "</td>");
                         out.println("<td> <input type=\"checkbox\" name=\"photos\" value=\"" + p.getId() + "\"" + "</td>");
                         out.println("</tr>");
 
@@ -38,11 +39,8 @@
                 out.println("<input type = \"submit\" value = \"Delete marked\" />");
 
             %>
-            <br>
-            <br>
-            
-            <a href="index.jsp">To start</a>>
-
         </form>
+
+       <button onclick="location.href = 'menu'">Back</button>
     </body>
 </html>

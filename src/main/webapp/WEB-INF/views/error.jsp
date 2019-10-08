@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Oct 5, 2019, 7:11:40 PM
+    Document   : error
+    Created on : Oct 8, 2019, 4:29:11 PM
     Author     : YBolshakova
 --%>
 
@@ -9,13 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Photos</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello!</h1>
-        <button onclick="location.href = 'all'">Delete photo</button>
+        <h1>Sorry, something happens. Try again!</h1>
         <br>
         <br>
-        <button onclick="location.href = 'add'">Add photo</button>
+        <button onclick="location.href = 'menu'">Back</button>
     </body>
 </html>

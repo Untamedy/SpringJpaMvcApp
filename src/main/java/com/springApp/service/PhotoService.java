@@ -20,6 +20,7 @@ public interface PhotoService {
     public List<Photo> selectAllFoto();
     public Photo selectById(int id);
     public void delete(int id);
+    public int selectMaxId();
     
     
     

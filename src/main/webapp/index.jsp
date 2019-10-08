@@ -9,10 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Photos</title>
     </head>
     <body>
         <h1>Hello!</h1>
-        <button onclick="location.href = 'photo/all'">Show all photo</button>
+        <button onclick="location.href = 'photo/menu'">Start</button>
+        
+        
     </body>
 </html>
