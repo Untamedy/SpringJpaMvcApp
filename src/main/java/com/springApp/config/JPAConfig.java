@@ -1,7 +1,5 @@
 package com.springApp.config;
 
-import com.springApp.service.PhotoService;
-import com.springApp.servicesImplements.PhotoServiceImplements;
 import java.util.Properties;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
