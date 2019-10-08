@@ -14,28 +14,34 @@
         <title>Your photo</title>
     </head>
     <body>
-        <ul>
+        <form action="delete" method="post">
             <%
-                List<Photo> allphotos = (List<Photo>) request.getAttribute("photo");
+                out.println("<table  border = \"1\">");
+                out.println("<tr>"
+                        + "<th> Photo </th>"
+                        + "<th>Photo ID</th> "
+                        + "<th> </th> "
+                        + "</tr> ");
+                List<Photo> allphotos = (List<Photo>) request.getAttribute("photos");
                 if (!allphotos.isEmpty()) {
                     for (Photo p : allphotos) {
-                        out.println("<br>");
-                        String name = "<a href='getPhoto?id=" + p.getId() + "'>" + "Photo " + p.getName() + "</a>";
-                        out.println(" <form action = \"delete\\this\" method = \"POST\" target = \"_blank\">");
-                        out.println("<input type = \"checkbox\" name = photoId />" + name);
-                        out.println("<br>");                       
+                        out.println("<tr>");
+                        out.println("<td>" + p.getName() + "</td>");
+                        out.println("<td>" + p.getId() + "</td>");
+                        out.println("<td> <input type=\"checkbox\" name=\"photos\" value=\"" + p.getId() + "\"" + "</td>");
+                        out.println("</tr>");
 
                     }
                 } else {
                     out.println("<h1>" + "Sorry, we don't have any information yet" + "</h1>");
                 }
-                 out.println("<input type = \"submit\" value = \"Delete Photos\" />");
+                out.println("<input type = \"submit\" value = \"Delete marked\" />");
 
             %>
             <br>
             <br>
 
-        </ul>
 
+        </form>
     </body>
 </html>

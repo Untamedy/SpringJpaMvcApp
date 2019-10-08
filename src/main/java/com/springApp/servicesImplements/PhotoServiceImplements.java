@@ -54,11 +54,7 @@ public class PhotoServiceImplements implements PhotoService{
     }
 
     
-    public void deletePhotos(int[] photos) {
-       for(Integer id: photos){
-          repository.deleteById(id);
-       }
-    }
+    
 
     
 }

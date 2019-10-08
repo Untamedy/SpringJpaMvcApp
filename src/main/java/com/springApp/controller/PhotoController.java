@@ -9,8 +9,6 @@ import com.springApp.entities.Photo;
 import com.springApp.service.PhotoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +30,11 @@ public class PhotoController {
     @GetMapping("/all")
     public String photos(Model model){
         List<Photo> photos = photoService.selectAllFoto();
-        model.addAttribute("photo", photos);        
+        model.addAttribute("photos", photos);        
         return "all";        
     }
     
-    @PostMapping("/delet{photo_id}")
+    @PostMapping("/deletOne{photo_id}")
     public String deletePhoto(@RequestParam("id")int id){       
         photoService.delete(id); 
         return "redirect:/all";
@@ -44,12 +42,14 @@ public class PhotoController {
     }
     
     
-    @PostMapping( "/delete/this{listPhoto}")
-    public ResponseEntity<Void> delete(@RequestParam(value = "photos[]", required = false) int[] photos) {
-        if (photos != null && photos.length > 0)
-            photoService.deletePhoto(photos);
-
-        return new ResponseEntity<>(HttpStatus.OK);
+    @PostMapping( "/delete{photos}")
+    public String delete(@RequestParam(value = "photos", required = false) String [] photos) {
+        if (photos != null && photos.length > 0){
+            for(String p: photos){
+                 photoService.delete(Integer.valueOf(p));
+            }
+        }           
+        return "all"; 
     }
     
     

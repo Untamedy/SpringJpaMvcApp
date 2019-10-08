@@ -28,21 +28,21 @@ public class Photo implements Serializable {
     private String name;
     
     @Column(name = "photo")
-    private String file;
+    private String path;
 
     public Photo() {
     }
 
    
-    public Photo(int id, String name, String file) {
+    public Photo(int id, String name, String path) {
         this.id = id;
         this.name = name;
-        this.file = file;
+        this.path = path;
     }
 
-    public Photo(String name, String file) {
+    public Photo(String name, String path) {
         this.name = name;
-        this.file = file;
+        this.path = path;
     }
     
     
@@ -64,11 +64,11 @@ public class Photo implements Serializable {
     }
 
     public String getFile() {
-        return file;
+        return path;
     }
 
     public void setFile(String file) {
-        this.file = file;
+        this.path = file;
     }
     
     

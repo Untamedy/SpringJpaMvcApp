@@ -1,5 +1,7 @@
 package com.springApp.config;
 
+import com.springApp.service.PhotoService;
+import com.springApp.servicesImplements.PhotoServiceImplements;
 import java.util.Properties;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableTransactionManagement
 @EnableWebMvc
 @ComponentScan("com.springApp")
-@PropertySource("classpath:mySql.properties")
+@PropertySource("classpath:app.properties")
 @EnableJpaRepositories("com.springApp.repositories")
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class JPAConfig {
@@ -90,6 +92,7 @@ public class JPAConfig {
        Init init = new Init();
         return init;
     }
-            
+    
+        
     
 }
