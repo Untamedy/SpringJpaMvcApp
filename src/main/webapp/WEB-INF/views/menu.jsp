@@ -17,5 +17,8 @@
         <br>
         <br>
         <button onclick="location.href = 'add'">Add photo</button>
+        <br>
+        <br>
+        <button onclick="location.href = 'archive'">Add photo to archive</button>
     </body>
 </html>
