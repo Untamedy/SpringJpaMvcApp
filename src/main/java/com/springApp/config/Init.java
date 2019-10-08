@@ -33,7 +33,7 @@ public class Init {
         if (0 != files.length) {
             for (File f : files) {
                 try {
-                    if(!repository.exsists(f.getName())){
+                    if(repository.findByName(f.getName())==null){
                          Photo photo = new Photo(f.getName(), f.getCanonicalPath());
                     repository.save(photo);
                     }                   

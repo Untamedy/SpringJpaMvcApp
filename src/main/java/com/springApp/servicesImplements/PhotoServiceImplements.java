@@ -18,13 +18,11 @@ import com.springApp.service.PhotoService;
  * @author Lenovo
  */
 @Service
-public class PhotoServiceImplements implements PhotoService{
+public class PhotoServiceImplements implements PhotoService {
 
     public PhotoServiceImplements() {
     }
-    
-        
-    
+
     @Autowired
     private PhotoRepository repository;
 
@@ -37,7 +35,7 @@ public class PhotoServiceImplements implements PhotoService{
     @Override
     @Transactional
     public List<Photo> selectAllFoto() {
-      return repository.findAll();
+        return repository.findAll();
     }
 
     @Override
@@ -45,7 +43,6 @@ public class PhotoServiceImplements implements PhotoService{
     public Photo selectById(int id) {
         return repository.findById(id).get();
     }
-        
 
     @Transactional
     @Override
@@ -53,14 +50,4 @@ public class PhotoServiceImplements implements PhotoService{
         repository.deleteById(id);
     }
 
-    @Override
-    public int selectMaxId() {
-      return repository.selectMaxId();
-        
-    }
-
-    
-    
-
-    
 }

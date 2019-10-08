@@ -7,21 +7,22 @@ package com.springApp.controller;
 
 import com.springApp.entities.Photo;
 import com.springApp.service.PhotoService;
-import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.io.OutputStream;
+
 import java.util.List;
-import javax.imageio.ImageIO;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,7 +39,7 @@ public class PhotoController {
 
     @GetMapping("/menu")
     public String menu() {
-        return "menu";
+        return "menu";        
     }
 
     @GetMapping("/all")
@@ -66,14 +67,19 @@ public class PhotoController {
         model.addAttribute("path", photo.getFile());
         return "viewPhoto";
     }
+     @GetMapping("/add")
+    public String addPhoto() {
+        return "add";        
+    }
+    
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/add_photo")
     public String onAddPhoto(Model model, @RequestParam MultipartFile photo) {
         if (photo.isEmpty()) {
             return "error";
         }
         try {
-            int id = photoService.selectMaxId();
+            int id = new Random().nextInt();
             File file = new File("C:\\Users\\YBolshakova\\Documents\\gs-maven\\SpringApp\\src\\main\\resources\\photo\\photo" + id + ".jpg");
             FileOutputStream writer = new FileOutputStream(file);
             writer.write(photo.getBytes());
